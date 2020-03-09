@@ -1,8 +1,7 @@
-console.log('port',process.env.S_PORT,'host',process.env.DB_HOST)
+
 const dotenv = require('dotenv')
 dotenv.config()
-console.log(process.env)
-console.log('port',process.env.S_PORT,'host',process.env.DB_HOST)
+
 //crear servidor
 const express = require('express')
 const cors = require('cors')
@@ -23,7 +22,7 @@ conexion.connect(err => {
         return err;
     }
 })
-
+console.log('respuesta')
 app.use(cors())
 app.get('/', (req, res) => {
     const SELECCIONAR_TAREAS = 'SELECT * FROM tareas';
