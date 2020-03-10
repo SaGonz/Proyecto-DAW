@@ -7,9 +7,8 @@ const express = require('express')
 const cors = require('cors')
 const mysql = require('mysql')
 
-
+//El objeto Express representa la aplicación
 const app = express()
-
 
 const conexion = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -23,6 +22,7 @@ conexion.connect(err => {
     }
 })
 console.log('respuesta')
+
 app.use(cors())
 app.get('/', (req, res) => {
     const SELECCIONAR_TAREAS = 'SELECT * FROM tareas';
@@ -58,6 +58,22 @@ app.get('/completadas', (req, res) => {
             })
         }
     })
+})
+
+const lista = [
+    { id: 0, titulo: "Hacer el proyecto"},
+    { id: 1, titulo: "Hacer té"},
+    { id: 2, titulo: "Hacer el proyecto"},
+]
+//Leyendo una tarea en particular
+app.get('/listafalsa', (req, res) =>{
+    res.send(lista)
+})
+//Leyendo una tarea en particular
+app.get('/listafalsa/:id', (req, res) =>{
+    let item = lista.find(i => parseInt(i.id === req.params.id))
+    if(!item) res.status(404).send('No se ha encontrado la tarea')
+    res.send(item,"Aquí sí")
 })
 app.listen(process.env.S_PORT, () => {
     console.log('Server listening on port',process.env.S_PORT,'host',process.env.DB_HOST)
