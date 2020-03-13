@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Formulario from './formulario'
+import Completas from './completas'
 
 class Tareas extends Component {
     constructor(props){
@@ -12,13 +14,17 @@ class Tareas extends Component {
             urgencia: '',
         }
     }
-    
-    renderTareas = ({id_tareas, titulo}) => <li className="tarea" key={id_tareas}>{titulo}</li>
+
+    renderTareas = () => { 
+        return this.props.listaDeTareas.map(({id_tareas, titulo}) => <div className="tarea" key={id_tareas}>{titulo}</div>)
+    }
     render() { 
         return ( 
             <div>
-                <img src={this.state.imagen} alt=''/>
-                {this.props.listaDeTareas.map(this.renderTareas)}
+                <Formulario listaDeTareas={this.props.listaDeTareas} obtenerTareas={this.props.obtenerTareas}/>
+                {this.props.listaDeTareas.length === 0 && "Márcate un propósito"}
+                {this.renderTareas()}
+                <Completas/>
             </div>
         )
     }

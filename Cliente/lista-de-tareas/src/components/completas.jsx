@@ -10,10 +10,22 @@ class Completas extends Component {
         fecha_finalizacion: null
     }
 
+    getTareasCompletas = _ => {
+        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/completas`)
+        .then(respuesta => respuesta.json())
+        .then(respuesta => this.setState({tareas: respuesta.data}))
+        .catch(err => console.log(err))
+        console.log('getTareasCompletas')
+    }
+
+    renderTareas = () => { 
+        return this.state.tareas.map(({id_tareas, titulo}) => <div className="tarea" key={id_tareas}>{titulo}</div>)
+    }
     render() { 
         return ( 
             <div>
-                <h1>Aquí van las tareas completadas</h1>
+                {this.state.tareas.length === 0 && ''}
+                {this.renderTareas()}
             </div>
         )
     }
