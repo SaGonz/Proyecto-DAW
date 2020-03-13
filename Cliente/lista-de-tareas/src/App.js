@@ -1,19 +1,24 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
+import Tareas from './components/tareas'
+import Completas from './components/completas'
 
 class App extends React.Component {
-  state = {
-    tareas: [],
-    tarea: {
-      titulo: "prueba",
-      fecha_creacion: null,
-      checked: false
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      tareas: [],
+      tarea: {
+        titulo: "prueba",
+        fecha_creacion: null,
+        checked: false
+      }
     }
   }
 
   componentDidMount() {
     this.getTareas()
-    console.log('component mounted')
   }
 
   getTareas = _ => {
@@ -21,11 +26,13 @@ class App extends React.Component {
     .then(respuesta => respuesta.json())
     .then(respuesta => this.setState({tareas: respuesta.data}))
     .catch(err => console.log(err))
+    console.log('getTareas')
   }
   addTarea = _ => {
     const {tarea} = this.state
+    console.log('the state send to the server is', this.state)
     fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/llenar?titulo=${tarea.titulo}`)
-    .then(this.getTareas)
+    .then(this.getTareas())
     .catch(err => console.error(err))
 
     console.log('addTarea called')
@@ -41,25 +48,20 @@ class App extends React.Component {
     "-" + this.dosDigitos(this.getUTCHours()) + this.dosDigitos(this.getUTCMinutes()) + this.dosDigitos(this.getUTCSecons()) 
   }
 
-  renderTareas = ({id_tareas, titulo}) => <div key={id_tareas}>{titulo}</div>
   render(){
     const {tareas, tarea} = this.state 
     return (
-      <div className="App">
+      <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
         <div>
-          <form>
-            <input onChange={
+            <input value={this.state.tarea.titulo} onChange={
               e => this.setState({
-                tarea: tarea, titulo: e.target.value, fecha_creacion: this.fecha,
+                tarea: { titulo: e.target.value, fecha_creacion: this.fecha },
               }),
-              () => {
-                console.log('se ha cambiado la tarea',this.state.tarea.titulo)
-              }
+              console.log('state update',)
             }/>
             <button onClick={this.addTarea}>Add</button>
-          </form>
         </div>
-        {tareas.map(this.renderTareas)}
+        <Tareas listaDeTareas={this.state.tareas}/>
       </div>
     )
   }
