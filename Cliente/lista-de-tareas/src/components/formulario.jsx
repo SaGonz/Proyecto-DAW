@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Formulario extends Component{
     constructor(props) {
         super(props)
-        this.state = {valor: ''}
+        this.state = {valor: '', fecha_creacion: ''}
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,12 +16,14 @@ class Formulario extends Component{
     handleSubmit(event) {
         event.preventDefault()
         console.log('enviar')
+        this.addTarea()
     }
 
     addTarea = _ => {
         fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/llenar?titulo=${this.state.valor}`)
         .then(this.props.obtenerTareas())
         .catch(err => console.error(err))
+        console.log('tarea enviada')
     }
 
     render() {
