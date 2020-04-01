@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+import useSound from 'use-sound';
 
 class BotonCompletar extends Component {
 
     handleClick = () => {
-        console.log("has decidido completar una tarea",this.props.idTarea1)
+        console.log("has decidido completar una tarea",this.props.idTarea)
         fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+
-        `/completar?id_tareas=${this.props.idTarea}`)
+        `/completar?id_tarea=${this.props.idTarea}`)
+
+    }
+    handleChange = () => {
+
     }
 
     render() {
         return (
-            <input className="boton-completar" type="checkbox" onClick={this.handleClick}/>
+            <input className="boton-completar" type="checkbox" onClick={this.handleClick} onChange={this.handleChange}/>
         )
     }
 }

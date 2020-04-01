@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import Formulario from './formulario'
-import Completas from './completas'
 import BotonBorrar from './botonborrar'
 import BotonCompletar from './botoncompletar'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class Tareas extends Component {
-    constructor(props){
-        super(props)
-    }
 
     renderTareas = () => { 
-        return this.props.listaDeTareas.map(({id_tareas, titulo}) => <div className="tarea" key={id_tareas}> <BotonCompletar idTarea={id_tareas}/> {titulo} <BotonBorrar idTarea={id_tareas}/></div>)
+        return this.props.listaDeTareas.map(
+            ({id_tarea, titulo, fecha_creacion, id_estado}) => 
+            <div className="tarea" key={id_tarea}> 
+                <BotonCompletar idTarea={id_tarea}/> 
+                {titulo} estado:{id_estado}
+                <button className="fecha">
+                    <Moment format='DD-MM-YY LT'>{fecha_creacion}</Moment>
+                </button>
+                <BotonBorrar idTarea={id_tarea}/>
+            </div>
+        )
     }
     render() { 
         return ( 

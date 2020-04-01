@@ -36,6 +36,14 @@ input {
   font-size: 2rem;
   color: rgb(224, 224, 224);
 }
+.boton-completar { border: none }
+
+.fecha {
+  font-size: 0.6rem;
+  text-decoration: none;
+  color: rgb(224, 224, 224);
+}
+
 
 @keyframes App-logo-spin {
   from {

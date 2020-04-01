@@ -8,12 +8,12 @@ class BotonBorrar extends Component {
     }
     borrarTarea = (idBorrar) => {
         console.log('borrartareapeticion hit',idBorrar)
-        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/borrar?id_tareas=${idBorrar}`)
+        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/borrar?id_tarea=${idBorrar}`)
     }
 
     render() {
         return(
-            <a className="boton-borrar" onClick={this.handleBorrar}>x</a>
+            <button className="boton-borrar" onClick={this.handleBorrar}>x</button>
         )
     }
 }
