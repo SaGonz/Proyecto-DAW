@@ -9,15 +9,15 @@ class Tareas extends Component {
 
     renderTareas = () => { 
         return this.props.listaDeTareas.map(
-            ({id_tarea, titulo, fecha_creacion, id_estado}) => 
-            <div className="tarea" key={id_tarea}> 
-                <BotonCompletar idTarea={id_tarea}/> 
-                {titulo} estado:{id_estado}
+            ({id_tarea, titulo, fecha_creacion}) => 
+            <label className="tarea" key={id_tarea}> 
+                <BotonCompletar idTarea={id_tarea} actualizarRoot={this.props.actualizarRoot}/> 
+                {titulo} 
                 <button className="fecha">
                     <Moment format='DD-MM-YY LT'>{fecha_creacion}</Moment>
                 </button>
-                <BotonBorrar idTarea={id_tarea}/>
-            </div>
+                <BotonBorrar idTarea={id_tarea} actualizarRoot={this.props.actualizarRoot}/>
+            </label>
         )
     }
     render() { 

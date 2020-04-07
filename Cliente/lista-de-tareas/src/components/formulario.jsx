@@ -30,7 +30,7 @@ class Formulario extends Component{
         return(
             <form onSubmit={this.handleSubmit}>
                 <input type="text" value={this.state.valor} onChange={this.handleChange}/>
-                <input type="submit" value="Iniciar"/>
+                <input type="submit" className="boton-envio" value="Iniciar"/>
             </form>
         )
     }

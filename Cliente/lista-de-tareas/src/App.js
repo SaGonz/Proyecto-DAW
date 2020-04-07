@@ -13,7 +13,8 @@ class App extends React.Component {
       tarea: {
         titulo: '',
         fecha_creacion: null,
-        checked: false
+        estado: '',
+        categoria: ''
       }
     }
   }
@@ -30,6 +31,10 @@ class App extends React.Component {
     .catch(err => console.log(err))
     console.log('getTareas a endpoint')
   }
+  
+  actualizarRoot = _ => {
+    this.getTareas()
+  }
 
   render(){
     const {tareas, tarea} = this.state 
@@ -43,11 +48,13 @@ class App extends React.Component {
         <Switch>
           <Route Path="/">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
-              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas}/>
+              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} actualizarRoot={this.actualizarRoot}/>
             </div>
           </Route>
-          <Route Path="/completas">
-            <Completas />
+          <Route Path="/r-completadas">
+            <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
+              <Completas/>
+            </div>
           </Route>
         </Switch>
       </Router>

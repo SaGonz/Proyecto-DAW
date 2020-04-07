@@ -102,7 +102,7 @@ app.get('/completar', (req, res) => {
 })
 
 //DELETE
-app.post('/borrar', (req, res) => {
+app.get('/borrar', (req, res, next) => {
     console.log('----------so you want to delete off a task------------')
     const {id_tarea} = req.query
     const BORRAR_TAREA = `DELETE FROM tarea WHERE id_tarea = ${id_tarea}`

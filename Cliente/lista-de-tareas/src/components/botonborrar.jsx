@@ -9,6 +9,11 @@ class BotonBorrar extends Component {
     borrarTarea = (idBorrar) => {
         console.log('borrartareapeticion hit',idBorrar)
         fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/borrar?id_tarea=${idBorrar}`)
+        .then(this.callbackPadre)
+        .catch(err => console.log(err))
+    }
+    callbackPadre = _ => {
+        this.props.actualizarRoot()
     }
 
     render() {

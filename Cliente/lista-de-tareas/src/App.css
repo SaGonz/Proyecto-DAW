@@ -33,18 +33,30 @@ input {
 }
 
 .boton-borrar {
-  font-size: 2rem;
-  color: rgb(224, 224, 224);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255, 0);
+  border: none;
+}
+.boton-borrar:hover {
+  color: rgb(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 .boton-completar { 
   border: 1px rgba(255,255,255,0.3);
   transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+}
+.boton-envio:hover{
+  color: rgb(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
 }
 
 .fecha {
   font-size: 0.6rem;
   text-decoration: none;
   color: rgb(224, 224, 224);
+  background-color: rgb(0, 0, 0, 0);
+  border: none;
 }
 
 
