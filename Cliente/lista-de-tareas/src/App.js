@@ -24,7 +24,7 @@ class App extends React.Component {
 
   //Llamar a Endpoint para conseguir todas las tareas
   getTareas = _ => {
-    fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT)
+    fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/tareas`)
     .then(respuesta => respuesta.json())
     .then(respuesta => this.setState({tareas: respuesta.data}))
     .catch(err => console.log(err))

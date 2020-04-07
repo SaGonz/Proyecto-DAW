@@ -36,7 +36,10 @@ input {
   font-size: 2rem;
   color: rgb(224, 224, 224);
 }
-.boton-completar { border: none }
+.boton-completar { 
+  border: 1px rgba(255,255,255,0.3);
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+}
 
 .fecha {
   font-size: 0.6rem;
