@@ -40,9 +40,9 @@ class App extends React.Component {
     const {tareas, tarea} = this.state 
     return (
       <Router>
-        <div>
-          <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/completas">Tareas completadas</Link></li>
+        <div className="link-container">
+          <li className="link"><Link to="/">Inicio</Link></li>
+          <li className="link"><Link to="/completas" style={{textDecoration: 'none'}}>Tareas completadas</Link></li>
         </div>
 
         <Switch>

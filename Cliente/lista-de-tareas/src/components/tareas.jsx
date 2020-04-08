@@ -24,8 +24,11 @@ class Tareas extends Component {
         return ( 
             <div>
                 <Formulario listaDeTareas={this.props.listaDeTareas} obtenerTareas={this.props.obtenerTareas}/>
+                <div className="tareas-container">
                 {this.props.listaDeTareas.length === 0 && <div className="tarea">Márcate un propósito</div>}
                 {this.renderTareas()}
+                </div>
+                
             </div>
         )
     }
