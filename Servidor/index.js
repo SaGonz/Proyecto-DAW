@@ -11,11 +11,15 @@ const helmet = require('helmet')
 const config = require('config')
 const cors = require('cors')
 const mysql = require('mysql')
+const path = require('path');
 
 //El objeto Express representa la aplicación
 const app = express()
 app.use(cors())
 app.use(helmet())
+
+//Serve React
+app.use(express.static(path.join(__dirname, 'build')));
 
 //Configuración
 console.log('Nombre de la aplicación: '+config.get('name'))
@@ -40,6 +44,11 @@ conexion.connect(err => {
         console.log('conexion correcta a bbdd')
     }
 })
+
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 app.get('/tareas', (req, res, next) => {
     const SELECCIONAR_TAREAS = `SELECT * FROM tarea WHERE id_estado="en proceso";`
