@@ -27,13 +27,18 @@ class Completas extends Component {
     }
 
     renderTareas = () => { 
-        return this.state.tareas.map(({id_tareas, titulo, fecha_creacion, fecha_finalizacion}) => 
-        <div className="tarea" key={id_tareas}>{titulo} ({fecha_creacion.diff(fecha_finalizacion,'days',true)} días)</div>)
+        return this.state.tareas.map(
+            ({id_tareas, titulo, fecha_creacion, fecha_finalizacion}) => 
+            <label className="tarea" key={id_tareas}>
+            {titulo}
+            (? días)
+            </label>
+        )
     }
     render() { 
         return ( 
-            <div>
-                {this.state.tareas.length === 0 && 'Aún no completaste ninguna tarea'}
+            <div className="tareas-container">
+                {this.state.tareas.length === 0 && <div className="tarea"> Aún no completaste ninguna tarea</div>}
                 {this.renderTareas()}
             </div>
         )

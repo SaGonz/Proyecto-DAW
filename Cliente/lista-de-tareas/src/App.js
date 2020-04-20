@@ -41,12 +41,12 @@ class App extends React.Component {
     return (
       <Router>
         <div className="link-container">
-          <li className="link"><Link to="/">Inicio</Link></li>
+          <li className="link"><Link to="/tareas">Inicio</Link></li>
           <li className="link"><Link to="/completadas" style={{textDecoration: 'none'}}>Tareas completadas</Link></li>
         </div>
 
         <Switch>
-          <Route path="/">
+          <Route path="/tareas">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
               <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} actualizarRoot={this.actualizarRoot}/>
             </div>
