@@ -42,16 +42,16 @@ class App extends React.Component {
       <Router>
         <div className="link-container">
           <li className="link"><Link to="/">Inicio</Link></li>
-          <li className="link"><Link to="/completas" style={{textDecoration: 'none'}}>Tareas completadas</Link></li>
+          <li className="link"><Link to="/completadas" style={{textDecoration: 'none'}}>Tareas completadas</Link></li>
         </div>
 
         <Switch>
-          <Route Path="/">
+          <Route path="/">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
               <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} actualizarRoot={this.actualizarRoot}/>
             </div>
           </Route>
-          <Route Path="/r-completadas">
+          <Route path="/completadas">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
               <Completas/>
             </div>
