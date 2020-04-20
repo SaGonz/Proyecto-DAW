@@ -19,7 +19,7 @@ app.use(cors())
 app.use(helmet())
 
 //Serve React
-app.use(express.static(path.join(__dirname, 'build')));
+//app.use(express.static(path.join(__dirname, 'build')));
 
 //Configuración
 console.log('Nombre de la aplicación: '+config.get('name'))
@@ -46,9 +46,9 @@ conexion.connect(err => {
 })
 
 
-app.get('/*', (req, res) => {
+/*app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+  });*/
 
 app.get('/tareas', (req, res, next) => {
     const SELECCIONAR_TAREAS = `SELECT * FROM tarea WHERE id_estado="en proceso";`
@@ -77,7 +77,6 @@ app.get('/r-completadas', (req,res) => {
     })
 })
 
-//POST
 app.get('/llenar', (req, res) =>{
     console.log('so you want to write a task')
     const {titulo} = req.query
@@ -93,8 +92,6 @@ app.get('/llenar', (req, res) =>{
         }
     }
 })
-
-//POST para completadas
 app.get('/completar', (req, res) => {
     console.log('----------so you want to check off a task------------')
     const {id_tarea} = req.query
@@ -109,8 +106,6 @@ app.get('/completar', (req, res) => {
         }
     })
 })
-
-//DELETE
 app.get('/borrar', (req, res, next) => {
     console.log('----------so you want to delete off a task------------')
     const {id_tarea} = req.query
