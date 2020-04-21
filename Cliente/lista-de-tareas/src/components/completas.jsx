@@ -15,15 +15,11 @@ class Completas extends Component {
         this.getTareasCompletadas()
     }
     getTareasCompletadas = _ => {
-        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/r-completadas`)
+        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/api/completadas`)
         .then(respuesta => respuesta.json())
         .then(respuesta => this.setState({tareas: respuesta.data}))
         .catch(err => console.log(err))
         console.log('getTareasCompletadas',this.state.tareas)
-    }
-
-    handleClick = _ => {
-        console.log('click a completadas')
     }
 
     renderTareas = () => { 

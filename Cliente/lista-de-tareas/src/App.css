@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Baloo+Thambi+2:wght@500display=swap');
 
+body {
+  height: 100%;
+}
+
 .App {
   text-align: center;
   box-shadow: 10px 2px 2px rgb(131, 131, 131, 0.7);
+  height: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) { }
