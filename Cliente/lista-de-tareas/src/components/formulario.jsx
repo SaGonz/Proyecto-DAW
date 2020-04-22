@@ -7,6 +7,7 @@ class Formulario extends Component{
             valor: '', 
             fecha_creacion: '',
             errores: {
+                vacio: '',
                 longitud: ''
             }
         }
@@ -21,28 +22,21 @@ class Formulario extends Component{
     }
     handleChange(event) {
         event.preventDefault()
-        let errores = this.state.errores
-        
-        errores.longitud = event.target.value.length < 45 
-            ? "El título de tu tarea es demasiado largo."
-            : ''
+
+        if(event.target.value.length > 1) {
+            this.setState({errores: {vacio: 'El campo de tareas no debe estar vacío.'}})
+        }
 
         if(event.target.value.length < 45) {
+            this.setState({errores: {longitud: ''}})
             this.setState({valor: event.target.value})  
         } else {
-            console.log("tarea demasado larga")
-            this.handleError()
+            this.setState({errores: {longitud: 'El título de tu tarea es demasiado largo.'}})
         }
-        
-        console.log(event.target.value)
     }
     handleSubmit(event) {
         event.preventDefault()
-        console.log('enviar')
         this.addTarea()
-    }
-    handleError() {
-        alert('tarea demasiado larga',this.state.errores.longitud)
     }
 
     addTarea = _ => {
@@ -57,6 +51,8 @@ class Formulario extends Component{
             <form onSubmit={this.handleSubmit}>
                 <input type="text" value={this.state.valor} onChange={this.handleChange} onClick={this.handleClick}/>
                 <input type="submit" className="boton-envio" value="Iniciar"/>
+                <div className="error">{this.state.errores.longitud}</div>
+                <div className="error">{this.state.errores.vacio}</div>
             </form>
         )
     }

@@ -1,13 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Baloo+Thambi+2:wght@500display=swap');
-
-body {
-  height: 100%;
-}
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Quicksand&display=swap');
 
 .App {
   text-align: center;
   box-shadow: 10px 2px 2px rgb(131, 131, 131, 0.7);
-  height: 100%;
+  min-height: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) { }
@@ -27,6 +24,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   box-shadow: 10px 5px 5px rgb(131, 131, 131, 0.7);
+  font-family: 'Crimson Text', serif;
 }
 li {
   background-color: rgba(255,255,255,0.3);
@@ -43,7 +41,6 @@ li {
 .tareas-container {
   display: flex;
   flex-direction: column;
-  padding: 1rem 30rem;
 }
 
 .tarea{
@@ -57,7 +54,7 @@ li {
   box-shadow: 0px 3px 4px rgb(131, 131, 131, 0.2);
 }
 
-input {
+input:not(.boton-completar) {
   background-color: rgba(255,255,255,0.3);
   border: none;
   margin: 2rem 0.1rem;
@@ -77,13 +74,38 @@ input {
 }
 .boton-borrar:hover {
   color: rgb(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  transition: all 1s ease;
   
 }
 .boton-completar { 
-  border: 1px rgba(255,255,255,0.3);
-  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
-  padding: 0.5rem;
+  position: relative;
+  margin: 0;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.boton-completar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  transition: all 1s ease-in-out;
+}
+.boton-completar:hover:before {
+  border-left: none;
+  border-top: none;
+  width: 10px;
+  height: 15px;
+  color:  #FFF;
+  transition: all 1s ease-in-out;
+  transform: rotate(30deg);
 }
 .boton-envio {
   box-shadow: 0px 3px 4px rgb(131, 131, 131, 0.2);
@@ -106,4 +128,25 @@ input, .boton-envio, .boton-completar, .tarea, .boton-borrar {
 }
 .boton-envio, .boton-completar{
   font-family: 'Montserrat', sans-serif;
+}
+
+/*Dispositivos móviles*/
+@media (min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .tareas-container {
+    padding: 0;
+  }
+}
+
+/*Tablets*/
+@media (min-width: 768px) and (max-width: 1200px) {
+  .tareas-container {
+    padding: 0;
+  }
+}
+
+/*Pantallas*/
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) { 
+  .tareas-container {
+    padding: 0;
+  }
 }

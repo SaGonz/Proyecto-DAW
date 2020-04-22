@@ -21,6 +21,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getTareas()
+    document.title = "Lista de tareas"
   }
 
   //Llamar a Endpoint para conseguir todas las tareas

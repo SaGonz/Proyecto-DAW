@@ -51,7 +51,10 @@ conexion.connect(err => {
   });*/
 
 app.get('/api/tareas', (req, res, next) => {
-    const SELECCIONAR_TAREAS = `SELECT * FROM tarea WHERE id_estado="en proceso";`
+    const id_estado = "en proceso"
+    const SELECCIONAR_TAREAS = 
+    `SELECT * FROM tarea WHERE id_estado = ${conexion.escape(id_estado)};`
+    
     conexion.query(SELECCIONAR_TAREAS, (err, result) =>{
         if(err) {
             return res.send(err)
@@ -65,7 +68,10 @@ app.get('/api/tareas', (req, res, next) => {
 
 //Ruta para ver las tareas completadas
 app.get('/api/completadas', (req,res) => {
-    const SELECCIONAR_TAREAS_COMPLETADAS = `SELECT * FROM tarea WHERE id_estado="completada"`
+    const id_estado = "completada"
+    const SELECCIONAR_TAREAS_COMPLETADAS = 
+    `SELECT * FROM tarea WHERE id_estado = ${conexion.escape(id_estado)};`
+    
     conexion.query(SELECCIONAR_TAREAS_COMPLETADAS, (err, result) =>{
         if(err) {
             res.send(err)
@@ -78,44 +84,43 @@ app.get('/api/completadas', (req,res) => {
 })
 
 app.get('/llenar', (req, res) =>{
-    console.log('so you want to write a task')
     const {titulo} = req.query
+    const id_estado = "en proceso"
     const LLENAR_LISTA = 
-    `INSERT INTO tarea (titulo,id_estado,fecha_creacion) VALUES ('${titulo}',"en proceso",NOW());`
+    `INSERT INTO tarea (titulo,id_estado,fecha_creacion) 
+    VALUES (${conexion.escape(titulo)}, ${conexion.escape(id_estado)} ,NOW());`
      
     conexion.query(LLENAR_LISTA), (err, result) => {
         if(err) {
             return res.send(err)
         } else {
-            console.log("la tarea se ha agregado con exito a la bbdd")
             return res.send("Te has propuesto una nueva tarea")
         }
     }
 })
 app.get('/completar', (req, res) => {
-    console.log('----------so you want to check off a task------------')
     const {id_tarea} = req.query
-    const COMPLETAR_TAREA = `UPDATE tarea SET id_estado="completada",fecha_finalizacion=NOW() WHERE id_tarea = ${id_tarea}`
+    const id_estado = "completada"
+
+    const COMPLETAR_TAREA = 
+    `UPDATE tarea SET id_estado= ${conexion.escape(id_estado)},fecha_finalizacion=NOW() 
+    WHERE id_tarea = ${conexion.escape(id_tarea)}`
+
     conexion.query(COMPLETAR_TAREA, (err, result) => {
         if(err) {
-            console.log('------',err,'----------')
             return res.send(err)
         } else {
-            console.log('----------has completado una tarea----------')
             return res.send()
         }
     })
 })
 app.get('/borrar', (req, res, next) => {
-    console.log('----------so you want to delete off a task------------')
     const {id_tarea} = req.query
-    const BORRAR_TAREA = `DELETE FROM tarea WHERE id_tarea = ${id_tarea}`
+    const BORRAR_TAREA = `DELETE FROM tarea WHERE id_tarea = ${conexion.escape(id_tarea)}`
     conexion.query(BORRAR_TAREA), (err, result) => {
         if(err) {
-            console.log('---------',err,'--------')
             return res.send(err)
         } else {
-            console.log('has borrado una tarea')
             return res.send("Has borrado una tarea")
         }
     }

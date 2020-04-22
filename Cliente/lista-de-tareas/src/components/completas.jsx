@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'moment-timezone';
+import moment from 'moment-timezone';
 
 class Completas extends Component {
 
@@ -21,13 +22,24 @@ class Completas extends Component {
         .catch(err => console.log(err))
         console.log('getTareasCompletadas',this.state.tareas)
     }
+    getTiempoTranscurrido = (inicio, fin) => {
+        let finicio = moment(inicio)
+        let ffin = moment(fin)
+        let tiempo = ''
+
+        ffin.diff(finicio, 'minutes') > 59 
+        ? tiempo = ffin.diff(finicio, 'hours') + " horas"
+        : tiempo = ffin.diff(finicio, 'minutes') + " minutos"
+        
+        return tiempo
+    }
 
     renderTareas = () => { 
         return this.state.tareas.map(
             ({id_tareas, titulo, fecha_creacion, fecha_finalizacion}) => 
             <label className="tarea" key={id_tareas}>
             {titulo}
-            (? días)
+            <button className="fecha">({this.getTiempoTranscurrido(fecha_creacion,fecha_finalizacion)})</button>
             </label>
         )
     }

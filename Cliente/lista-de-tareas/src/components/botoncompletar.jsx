@@ -20,7 +20,7 @@ class BotonCompletar extends Component {
 
     render() {
         return (
-            <input className="boton-completar" type="checkbox" onClick={this.handleClick} onChange={this.handleChange}/>
+            <input className="boton-completar" id="cb" type="checkbox" onClick={this.handleClick} onChange={this.handleChange}/>
         )
     }
 }
