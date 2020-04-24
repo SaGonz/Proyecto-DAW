@@ -84,14 +84,15 @@ app.get('/api/completadas', (req,res) => {
 })
 
 app.get('/llenar', (req, res) =>{
-    const {titulo} = req.query
+    const {titulo,id_categoria} = req.query
     const id_estado = "en proceso"
     const LLENAR_LISTA = 
-    `INSERT INTO tarea (titulo,id_estado,fecha_creacion) 
-    VALUES (${conexion.escape(titulo)}, ${conexion.escape(id_estado)} ,NOW());`
+    `INSERT INTO tarea (titulo,id_estado,id_categoria,fecha_creacion) 
+    VALUES (${conexion.escape(titulo)}, ${conexion.escape(id_estado)}, ${conexion.escape(id_categoria)},NOW());`
      
     conexion.query(LLENAR_LISTA), (err, result) => {
         if(err) {
+            console.log(`--------${err}-----`)
             return res.send(err)
         } else {
             return res.send("Te has propuesto una nueva tarea")

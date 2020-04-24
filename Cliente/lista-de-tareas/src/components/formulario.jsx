@@ -6,10 +6,8 @@ class Formulario extends Component{
         this.state = {
             valor: '', 
             fecha_creacion: '',
-            errores: {
-                vacio: '',
-                longitud: ''
-            }
+            categoria: '',
+            error: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -23,15 +21,17 @@ class Formulario extends Component{
     handleChange(event) {
         event.preventDefault()
 
-        if(event.target.value.length > 1) {
-            this.setState({errores: {vacio: 'El campo de tareas no debe estar vacío.'}})
+        if(event.target.value.length < 2) {
+            this.setState({error: 'El campo de tareas no debe estar vacío.'})
+        } else {
+            this.setState({error: ''})
         }
 
         if(event.target.value.length < 45) {
-            this.setState({errores: {longitud: ''}})
+            this.setState({error: ''})
             this.setState({valor: event.target.value})  
         } else {
-            this.setState({errores: {longitud: 'El título de tu tarea es demasiado largo.'}})
+            this.setState({error: 'El título de tu tarea es demasiado largo.'})
         }
     }
     handleSubmit(event) {
@@ -39,8 +39,35 @@ class Formulario extends Component{
         this.addTarea()
     }
 
+    handleChoice = (event) => {
+        const {value} = event.target
+        console.log('value,',value)
+        let urgencia = ''
+
+        switch(value) {
+            case 'ui':
+                    urgencia = 'urgente importante'
+                break;
+            case 'uni':
+                    urgencia = 'urgente no importante'
+                break;
+            case 'nui':
+                    urgencia = 'no urgente importante'
+                break;
+            case 'nuni':
+                    urgencia = 'no urgente no importante'
+                break;
+            default:
+                    urgencia = 'urgente importante'
+                break;
+        }
+
+        this.setState({categoria: urgencia})
+    }
+
     addTarea = _ => {
-        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/llenar?titulo=${this.state.valor}`)
+        const categoria = this.state.categoria
+        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/llenar?titulo=${this.state.valor}&id_categoria=${categoria}`)
         .then(this.props.obtenerTareas())
         .catch(err => console.error(err))
         console.log('tarea enviada')
@@ -50,9 +77,14 @@ class Formulario extends Component{
         return(
             <form onSubmit={this.handleSubmit}>
                 <input type="text" value={this.state.valor} onChange={this.handleChange} onClick={this.handleClick}/>
+                <select id="categoria" name="urgencia" onClick={this.handleChoice} className="dropdown">
+                    <option value="ui" defaultValue>urgente importante</option>
+                    <option value="uni">urgente no importante</option>
+                    <option value="nui">no urgente importante</option>
+                    <option value="nuni">no urgente no importante</option>
+                </select>
                 <input type="submit" className="boton-envio" value="Iniciar"/>
-                <div className="error">{this.state.errores.longitud}</div>
-                <div className="error">{this.state.errores.vacio}</div>
+                <div className="error">{this.state.error}</div>
             </form>
         )
     }

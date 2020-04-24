@@ -34,10 +34,21 @@ class Completas extends Component {
         return tiempo
     }
 
+    cogerFecha = (x) => {
+        //console.log(x)
+        const anhoMes = moment(x.fecha_creacion)
+        const clave = anhoMes.format('YYYY-MM')
+        const listaMes = new Map()
+        listaMes.set()
+        console.log('fecha',clave) 
+    }
+    groupTareas = _ => {
+        const listaMes = this.state.tareas.map(this.cogerFecha,)
+    }
     renderTareas = () => { 
         return this.state.tareas.map(
-            ({id_tareas, titulo, fecha_creacion, fecha_finalizacion}) => 
-            <label className="tarea" key={id_tareas}>
+            ({id_tarea, titulo, fecha_creacion, fecha_finalizacion}) => 
+            <label className="tarea" key={id_tarea}>
             {titulo}
             <button className="fecha">({this.getTiempoTranscurrido(fecha_creacion,fecha_finalizacion)})</button>
             </label>
@@ -46,6 +57,7 @@ class Completas extends Component {
     render() { 
         return ( 
             <div className="tareas-container">
+                <button onClick={this.groupTareas}>Conseguir mes</button>
                 {this.state.tareas.length === 0 && <div className="tarea"> Aún no completaste ninguna tarea</div>}
                 {this.renderTareas()}
             </div>

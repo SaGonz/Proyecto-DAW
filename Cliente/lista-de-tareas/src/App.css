@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Baloo+Thambi+2:wght@500display=swap');
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text|Quicksand&display=swap');
 
 .App {
@@ -24,7 +23,7 @@
   display: flex;
   justify-content: space-evenly;
   box-shadow: 10px 5px 5px rgb(131, 131, 131, 0.7);
-  font-family: 'Crimson Text', serif;
+  background: url("./images/1.svg");
 }
 li {
   background-color: rgba(255,255,255,0.3);
@@ -35,7 +34,13 @@ li {
   text-decoration: none;
   background-color: rgba(255,255,255,0.3);
   color: rgb(155, 155, 155);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Crimson Text', serif;
+  font-weight: 900;
+}
+
+.error {
+  font-size: large;  
+  color: #3d3d3d;
 }
 
 .tareas-container {
@@ -44,33 +49,55 @@ li {
 }
 
 .tarea{
-  background-color: rgba(255,255,255,0.3);
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.2rem;
   margin: 1rem;
   padding: -4rem;
+  background-color: rgba(255,255,255,0.3);
   color: #fcfcfc;
-  font-weight: 500;
-  font-family: 'Lato', sans-serif;
   box-shadow: 0px 3px 4px rgb(131, 131, 131, 0.2);
 }
 
 input:not(.boton-completar) {
   background-color: rgba(255,255,255,0.3);
   border: none;
-  margin: 2rem 0.1rem;
+  margin: 2rem 0rem;
   padding: 0.3rem;
   color: #ffffff;
-  font-weight: bolder;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   box-shadow: inset 0  0 2px 1px rgba(65, 65, 65, 0.2);
 }
 
+input[type="text"] {
+  width: 20rem;
+}
+
+select {
+  margin: 0 0.3rem;
+  position: relative;
+  -webkit-appearance: none;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
+  border: 3px dotted #ffffff;
+  box-sizing: border-box;
+  padding: 0.08rem;
+  background-color: rgba(255,255,255,0.3);
+  font-family: 'Quicksand', sans-serif;
+}
+option {
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+}
 .boton-borrar {
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   background-color: rgb(255, 255, 255, 0);
   border: none;
-  font-family: 'Baloo Thambi 2', cursive;
+  font-family: 'Quicksand', sans-serif;
 }
 .boton-borrar:hover {
   color: rgb(0, 0, 0, 0.1);
@@ -109,6 +136,7 @@ input:not(.boton-completar) {
 }
 .boton-envio {
   box-shadow: 0px 3px 4px rgb(131, 131, 131, 0.2);
+  font-family: 'Crimson Text', serif;
 }
 .boton-envio:hover {
   color: rgb(0, 0, 0, 0.1);
@@ -127,7 +155,8 @@ input, .boton-envio, .boton-completar, .tarea, .boton-borrar {
   text-shadow: rgb(122, 122, 122, 0.5) 1px 0 10px;
 }
 .boton-envio, .boton-completar{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
 }
 
 /*Dispositivos móviles*/

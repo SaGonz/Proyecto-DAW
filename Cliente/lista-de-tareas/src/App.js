@@ -42,8 +42,8 @@ class App extends React.Component {
     return (
       <Router>
         <div className="link-container">
-          <li className="link"><Link to="/">Inicio</Link></li>
-          <li className="link"><Link to="/completadas" style={{textDecoration: 'none'}}>Tareas completadas</Link></li>
+          <li className="link"><Link to="/">INICIO</Link></li>
+          <li className="link"><Link to="/completadas" style={{textDecoration: 'none'}}>TAREAS COMPLETADAS</Link></li>
         </div>
 
         <Switch>
