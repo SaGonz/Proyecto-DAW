@@ -16,12 +16,15 @@ class Formulario extends Component{
 
     handleClick(event) {
         event.target.value = ''
-        console.log(event.target.value)
     }
     handleChange(event) {
         event.preventDefault()
 
-        if(event.target.value.length < 2) {
+        const value = event.target.value 
+
+
+        if(event.target.value.length > 44) {
+            this.setState({error: ''})
             this.setState({error: 'El campo de tareas no debe estar vacío.'})
         } else {
             this.setState({error: ''})
@@ -32,6 +35,7 @@ class Formulario extends Component{
             this.setState({valor: event.target.value})  
         } else {
             this.setState({error: 'El título de tu tarea es demasiado largo.'})
+            
         }
     }
     handleSubmit(event) {
@@ -67,7 +71,7 @@ class Formulario extends Component{
 
     addTarea = _ => {
         const categoria = this.state.categoria
-        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/llenar?titulo=${this.state.valor}&id_categoria=${categoria}`)
+        fetch(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}/llenar?titulo=${this.state.valor}&id_categoria=${categoria}`)
         .then(this.props.obtenerTareas())
         .catch(err => console.error(err))
         console.log('tarea enviada')

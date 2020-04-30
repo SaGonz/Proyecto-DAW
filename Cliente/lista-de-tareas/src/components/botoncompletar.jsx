@@ -4,13 +4,9 @@ import useSound from 'use-sound';
 class BotonCompletar extends Component {
 
     handleClick = () => {
-        console.log("has decidido completar una tarea",this.props.idTarea)
         fetch(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}/completar?id_tarea=${this.props.idTarea}`)
-        .then(this.callbackPadre)
-        console.log('has mandado la petición')
-        
+        .then(this.callbackPadre)        
     }
-
     callbackPadre = () => {
         this.props.actualizarRoot()
     }

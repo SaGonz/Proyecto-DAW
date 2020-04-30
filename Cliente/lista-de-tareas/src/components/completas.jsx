@@ -27,24 +27,16 @@ class Completas extends Component {
         let ffin = moment(fin)
         let tiempo = ''
 
-        ffin.diff(finicio, 'minutes') > 59 
-        ? tiempo = ffin.diff(finicio, 'hours') + " horas"
+        ffin.diff(finicio, 'minutes') > 59 ?
+            (ffin.diff(finicio, 'hours') > 24 
+                ? tiempo = ffin.diff(finicio, 'days') + " días" 
+                : tiempo = ffin.diff(finicio, 'hours') + " horas"
+            )
         : tiempo = ffin.diff(finicio, 'minutes') + " minutos"
         
         return tiempo
     }
 
-    cogerFecha = (x) => {
-        //console.log(x)
-        const anhoMes = moment(x.fecha_creacion)
-        const clave = anhoMes.format('YYYY-MM')
-        const listaMes = new Map()
-        listaMes.set()
-        console.log('fecha',clave) 
-    }
-    groupTareas = _ => {
-        const listaMes = this.state.tareas.map(this.cogerFecha,)
-    }
     renderTareas = () => { 
         return this.state.tareas.map(
             ({id_tarea, titulo, fecha_creacion, fecha_finalizacion}) => 
@@ -57,7 +49,6 @@ class Completas extends Component {
     render() { 
         return ( 
             <div className="tareas-container">
-                <button onClick={this.groupTareas}>Conseguir mes</button>
                 {this.state.tareas.length === 0 && <div className="tarea"> Aún no completaste ninguna tarea</div>}
                 {this.renderTareas()}
             </div>

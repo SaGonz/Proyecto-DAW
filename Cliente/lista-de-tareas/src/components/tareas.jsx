@@ -30,7 +30,6 @@ class Tareas extends Component {
                 {this.props.listaDeTareas.length === 0 && <div className="tarea">Márcate un propósito</div>}
                 {this.renderTareas()}
                 </div>
-                <button onClick={this.groupTareas}>tareas nuevas</button>
             </div>
         )
     }
