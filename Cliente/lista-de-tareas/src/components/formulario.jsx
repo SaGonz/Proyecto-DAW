@@ -80,7 +80,7 @@ class Formulario extends Component{
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.valor} onChange={this.handleChange} onClick={this.handleClick}/>
+                <input type="text" pattern="" value={this.state.valor} onChange={this.handleChange} onClick={this.handleClick}/>
                 <select id="categoria" name="urgencia" onClick={this.handleChoice} className="dropdown">
                     <option value="ui" defaultValue>urgente importante</option>
                     <option value="uni">urgente no importante</option>
