@@ -45,13 +45,15 @@ li {
 .tareas-container {
   display: flex;
   flex-direction: column;
+  background-position: center;
+  background-size:  100% 125%;
+  background-repeat: no-repeat;
 }
 
 .tarea{
   font-family: 'Quicksand', sans-serif;
   font-size: 1.2rem;
   margin: 1rem;
-  padding: -4rem;
   background-color: rgba(255,255,255,0.3);
   color: #fcfcfc;
   box-shadow: 0px 3px 4px rgb(131, 131, 131, 0.2);
@@ -105,7 +107,7 @@ option {
 }
 .boton-completar { 
   position: relative;
-  margin: 0;
+  margin: 0 8px;
   top: 3px;
   width: 20px;
   height: 20px;

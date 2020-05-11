@@ -1,25 +1,33 @@
 import React, { Component } from 'react'
 import Formulario from './formulario'
-import BotonBorrar from './botonborrar'
-import BotonCompletar from './botoncompletar'
-import Moment from 'react-moment';
+import { ItemTarea } from './itemtarea'
 import 'moment-timezone';
-import moment from 'moment-timezone';
 
 class Tareas extends Component {
 
+    findCategories = (lista) => {
+        const uniqueCategories = new Set()
+        lista.forEach(item => {
+            uniqueCategories.add(item.id_categoria)
+        })
+        return uniqueCategories
+    }
+
+    orderTasksByCategory = (tasks) => {
+        const categories = this.findCategories(tasks)
+        const sortedByCategory = {}
+        for (const category of categories) {
+            sortedByCategory[category] = tasks.filter(task => task.id_categoria === category)
+        }
+        return sortedByCategory
+    }
+
     renderTareas = () => { 
+        console.log(this.orderTasksByCategory(this.props.listaDeTareas))
+        
         return this.props.listaDeTareas.map(
-            ({id_tarea, titulo, id_categoria, fecha_creacion}) => 
-            <label className="tarea" key={id_tarea}> 
-                <BotonCompletar idTarea={id_tarea} actualizarRoot={this.props.actualizarRoot}/> 
-                {titulo} 
-                <button className="fecha">{id_categoria}</button>
-                <button className="fecha">
-                    <Moment format='DD-MM-YY LT'>{fecha_creacion}</Moment>
-                </button>
-                <BotonBorrar idTarea={id_tarea} actualizarRoot={this.props.actualizarRoot}/>
-            </label>
+            (item) => 
+            <ItemTarea { ...item } refreshDataFromServer={this.props.refreshDataFromServer}/>
         )
     }
     render() { 

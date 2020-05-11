@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import useSound from 'use-sound';
+//import completado from './../sounds/256112__nckn__pleasant-done-notification.mp3'
 
+//const [playOn] = useSound( './../sounds/256112__nckn__pleasant-done-notification.mp3')
+    
 class BotonCompletar extends Component {
-
+    
+    
     handleClick = () => {
         fetch(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}/completar?id_tarea=${this.props.idTarea}`)
-        .then(this.callbackPadre)        
+        .then(this.callbackPadre)
+        
+        useSound('./../sounds/256112__nckn__pleasant-done-notification.mp3')
     }
     callbackPadre = () => {
-        this.props.actualizarRoot()
+        this.props.refreshDataFromServer()
     }
 
     render() {

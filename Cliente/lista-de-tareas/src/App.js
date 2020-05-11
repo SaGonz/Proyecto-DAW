@@ -26,14 +26,14 @@ class App extends React.Component {
 
   //Llamar a Endpoint para conseguir todas las tareas
   getTareas = _ => {
-    fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/api/tareas`)
+    fetch(`http://`+process.env.REACT_APP_HOST_AND_PORT+`/api/tareas`)
     .then(respuesta => respuesta.json())
     .then(respuesta => this.setState({tareas: respuesta.data}))
     .catch(err => console.log(err))
     console.log('getTareas a endpoint')
   }
   
-  actualizarRoot = _ => {
+  refreshDataFromServer = _ => {
     this.getTareas()
   }
 
@@ -49,7 +49,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
-              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} actualizarRoot={this.actualizarRoot}/>
+              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} refreshDataFromServer={this.refreshDataFromServer}/>
             </div>
           </Route>
           <Route path="/completadas">
