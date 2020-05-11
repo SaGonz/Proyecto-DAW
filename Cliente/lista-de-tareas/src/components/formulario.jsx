@@ -62,7 +62,7 @@ class Formulario extends Component{
 
     addTarea = _ => {
         const categoria = this.state.categoria
-        fetch(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}/llenar?titulo=${this.state.valor}&id_categoria=${categoria}`)
+        fetch(`http://${process.env.REACT_APP_HOST_AND_PORT}/llenar?titulo=${this.state.valor}&id_categoria=${categoria}`)
         .then(this.props.obtenerTareas())
         .catch(err => console.error(err))
         console.log('tarea enviada')

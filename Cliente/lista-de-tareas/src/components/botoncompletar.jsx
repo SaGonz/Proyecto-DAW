@@ -8,7 +8,7 @@ class BotonCompletar extends Component {
     
     
     handleClick = () => {
-        fetch(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}/completar?id_tarea=${this.props.idTarea}`)
+        fetch(`http://${process.env.REACT_APP_HOST_AND_PORT}/completar?id_tarea=${this.props.idTarea}`)
         .then(this.callbackPadre)
         
         useSound('./../sounds/256112__nckn__pleasant-done-notification.mp3')
