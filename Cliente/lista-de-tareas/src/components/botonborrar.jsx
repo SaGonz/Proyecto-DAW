@@ -11,7 +11,7 @@ class BotonBorrar extends Component {
         .catch(err => console.log(err))
     }
     callbackPadre = _ => {
-        this.props.refreshDataFromServer()
+        this.props.refrescarInfoServidor()
     }
 
     render() {

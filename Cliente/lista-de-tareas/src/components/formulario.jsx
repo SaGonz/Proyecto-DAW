@@ -6,7 +6,7 @@ class Formulario extends Component{
         this.state = {
             valor: '', 
             fecha_creacion: '',
-            categoria: '',
+            categoria: 'urgente importante',
             error: ''
         }
 

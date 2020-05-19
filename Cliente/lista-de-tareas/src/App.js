@@ -33,7 +33,7 @@ class App extends React.Component {
     console.log('getTareas a endpoint')
   }
   
-  refreshDataFromServer = _ => {
+  refrescarInfoServidor = _ => {
     this.getTareas()
   }
 
@@ -49,7 +49,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             <div className="App" style={{backgroundColor: "#"+ Math.random().toString(16).slice(2, 8)}}>
-              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} refreshDataFromServer={this.refreshDataFromServer}/>
+              <Tareas listaDeTareas={this.state.tareas} obtenerTareas={this.getTareas} refrescarInfoServidor={this.refrescarInfoServidor}/>
             </div>
           </Route>
           <Route path="/completadas">

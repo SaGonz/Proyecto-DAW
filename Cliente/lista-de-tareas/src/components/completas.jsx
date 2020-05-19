@@ -16,7 +16,7 @@ class Completas extends Component {
         this.getTareasCompletadas()
     }
     getTareasCompletadas = _ => {
-        fetch(`http://`+process.env.REACT_APP_HOST+`:`+process.env.REACT_APP_SERVER_PORT+`/api/completadas`)
+        fetch(`http://`+process.env.REACT_APP_HOST_AND_PORT+`/api/completadas`)
         .then(respuesta => respuesta.json())
         .then(respuesta => this.setState({tareas: respuesta.data}))
         .catch(err => console.log(err))
@@ -40,7 +40,7 @@ class Completas extends Component {
     renderTareas = () => { 
         return this.state.tareas.map(
             ({id_tarea, titulo, fecha_creacion, fecha_finalizacion}) => 
-            <label className="tarea" key={id_tarea}>
+            <label className="tarea completada" key={id_tarea}>
             {titulo}
             <button className="fecha">({this.getTiempoTranscurrido(fecha_creacion,fecha_finalizacion)})</button>
             </label>
